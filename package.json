@@ -2,7 +2,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "mocha --require @std/esm test/*.mjs",
+    "start": "abby 'mocha --require @std/esm test/*.mjs' --watch 'src/**/*.mjs,test/**/*.mjs'",
     "build": "node --experimental-modules build-characters.mjs"
   },
   "dependencies": {
@@ -12,12 +12,13 @@
   },
   "devDependencies": {
     "@std/esm": "^0.26.0",
+    "abigail": "^1.9.1",
     "babel-eslint": "^8.2.3",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "lodash": "^4.17.10",
+    "lodash.find": "^4.6.0",
     "mocha": "^5.2.0"
   }
 }
