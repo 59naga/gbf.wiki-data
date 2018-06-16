@@ -7,7 +7,7 @@ import { parseTable, parseDetail } from './src/characters';
 
 const requestPromise = Promise.promisify(request, { multiArgs: true });
 async function localize(chara) {
-  const url = `https://gbf.wiki/${encodeURIComponent(chara.name_en)}`;
+  const url = `https://gbf.wiki/${encodeURIComponent(chara.name_wiki)}`;
   const html = await requestPromise(url);
   const data = parseDetail(html.toString());
 
@@ -26,11 +26,11 @@ async function task(inputName, outputName) {
     characters, chara =>
       localize(chara)
         .then(((localizedData) => {
-          console.log(`progress ${i++}/${characters.length}`, localizedData.id, localizedData.t, localizedData.title, localizedData.name);
+          console.log(`progress ${++i}/${characters.length}`, localizedData.id, localizedData.rarity, localizedData.name, localizedData.specialty);
           return localizedData;
         }))
         .catch((error) => {
-          console.log('failed', chara.name_en, error.message, 'abort');
+          console.log('failed', chara.name_wiki, error.message, 'abort');
           return chara;
         })
     , { concurrency: 10 },

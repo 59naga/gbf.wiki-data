@@ -2,21 +2,8 @@ import cheerio from 'cheerio';
 
 const columns = [
   'no',
-  't',
-  'name_en',
-  'el',
-  'style',
-  'race',
-  'sex',
-  'star',
-  'hp',
-  'atk',
-  'em',
-  'weapon',
-  'voice',
-  'released',
-  'obtain',
-  'title',
+  'rarity',
+  'name_wiki',
 ];
 
 export default null;
@@ -35,7 +22,7 @@ export function parseTable(html) {
       [chara.star] = chara.star.match(/^\d+/);
     }
 
-    if (chara.name_en) {
+    if (chara.name_wiki) {
       characters.push(chara);
     }
   });
@@ -65,15 +52,15 @@ export function parseDetail(html) {
 
   /* eslint-disable camelcase */
   const id = $extra.find('th:contains("ID")').eq(0).next().text();
-  const t = $header.find('.char-rarity img').attr('alt').match(/Rarity (\w+).png/)[1];
+  const rarity = $header.find('.char-rarity img').attr('alt').match(/Rarity (\w+).png/)[1];
   const title = $extra.find('th:contains("Title")').eq(0).next().text();
   const title_en = $header.find('.char-title').text().match(/([\w ]+)/)[1];
   const name = $extra.find('th:contains("Name")').eq(0).next().text();
   const name_en = $header.find('.char-name').eq(0).text();
-  const el = getImgAlt('th:contains("Element")', /Label Element (\w+).png/);
+  const element = getImgAlt('th:contains("Element")', /Label Element (\w+).png/);
   let style = getImgAlt('th:contains("Style")', /Label Type (\w+).png/);
   const race = getImgAlt('th:contains("Race")', /Label Race (\w+).png/);
-  const sex = $stats.find('th:contains("Gender")').next().text();
+  const gender = $stats.find('th:contains("Gender")').next().text();
   const star = String($extra.find('th:contains("Uncap Limit")').next().find('img').length);
 
   // "8290 / 9850" => "9850"
@@ -107,15 +94,15 @@ export function parseDetail(html) {
 
   return {
     id,
-    t,
+    rarity,
     title,
     title_en,
     name,
     name_en,
-    el,
+    element,
     style,
     race,
-    sex,
+    gender,
     star,
     hp,
     atk,

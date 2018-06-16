@@ -25,10 +25,9 @@ describe('characters', () => {
 
       // SSRジャンヌの確認
       const jeanne = _find(characters, data => (
-        data.t === 'SSR' && data.name_en.match(/^Jeanne/)
+        data.rarity === 'SSR' && data.name_wiki === "Jeanne d'Arc"
       ));
-      assert(jeanne.t === 'SSR');
-      assert(jeanne.name_en === "Jeanne d'Arc");
+      assert(jeanne);
     });
   });
   describe('.parseDetail', () => {
@@ -48,15 +47,15 @@ describe('issues', () => {
 
     assert.deepEqual(data, {
       id: '3020030000',
-      t: 'R',
+      rarity: 'R',
       title: 'オッドアングラー',
       title_en: 'Odd Angler',
       name: 'ヨダルラーハ',
       name_en: 'Yodarha',
-      el: 'Water',
+      element: 'Water',
       style: 'Balanced',
       race: 'Harvin',
-      sex: 'Male',
+      gender: 'Male',
       star: '3',
       hp: '640',
       atk: '4290',
