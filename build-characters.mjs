@@ -3,13 +3,13 @@ import Promise from 'bluebird';
 
 import fs from 'fs';
 import path from 'path';
-import { parseTable, parseExtraData } from './src/characters';
+import { parseTable, parseDetail } from './src/characters';
 
 const requestPromise = Promise.promisify(request, { multiArgs: true });
 async function localize(chara) {
-  const url = `https://gbf.wiki/${chara.name_en}`;
+  const url = `https://gbf.wiki/${encodeURIComponent(chara.name_en)}`;
   const html = await requestPromise(url);
-  const data = parseExtraData(html.toString());
+  const data = parseDetail(html.toString());
 
   return Object.assign({}, chara, data);
 }
@@ -26,11 +26,11 @@ async function task(inputName, outputName) {
     characters, chara =>
       localize(chara)
         .then(((localizedData) => {
-          console.log(`progress ${i++}/${characters.length}`, localizedData.id, localizedData.name);
+          console.log(`progress ${i++}/${characters.length}`, localizedData.id, localizedData.t, localizedData.title, localizedData.name);
           return localizedData;
         }))
-        .catch(() => {
-          console.log('failed', chara.name_en, 'abort');
+        .catch((error) => {
+          console.log('failed', chara.name_en, error.message, 'abort');
           return chara;
         })
     , { concurrency: 10 },

@@ -39,12 +39,6 @@ describe('characters', () => {
       assert(data.title_en === 'Holy Maiden');
       assert(data.name === 'ジャンヌダルク');
     });
-    it('安室透でパースが失敗することがあった(再現不能)', () => {
-      const data = parseDetail(fs.readFileSync(fixtures.toru_amuro).toString());
-
-      assert(data.id === '3030238000');
-      assert(data.name === '安室透');
-    });
   });
 });
 
