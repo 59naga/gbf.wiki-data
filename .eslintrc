@@ -1,0 +1,34 @@
+---
+extends: airbnb-base
+
+env:
+  browser: true
+  mocha: true
+
+# Fix "Parsing error: Unexpected token import"
+# https://stackoverflow.com/questions/47815775/dynamic-imports-for-code-splitting-cause-eslint-parsing-error-import?rq=1
+parser: babel-eslint
+parserOptions:
+  sourceType: module
+  allowImportExportEverywhere: true
+
+# https://github.com/benmosher/eslint-plugin-import/issues/939#issuecomment-337879021
+
+settings:
+  import/resolver:
+    node:
+      extensions:
+        - .js
+        - .mjs
+
+rules:
+  import/extensions:
+    - error
+    - always
+    -
+      js: never
+      mjs: never
+
+  # misc
+  no-plusplus:
+    - 1
