@@ -70,6 +70,20 @@ async function main() {
     return a.released < b.released ? 1 : -1;
   });
 
+  // omit some fields for minified
+  const charas = characters.map(chara => ({
+    id: chara.id,
+    name: chara.name,
+    name_en: chara.name_en,
+    name_wiki: chara.name_wiki,
+    rarity: chara.rarity,
+    element: chara.element,
+    specialty: chara.specialty,
+    race: chara.race,
+    released: chara.released,
+  }));
+
+  fs.writeFileSync('./dist/charas.json', JSON.stringify(charas));
   fs.writeFileSync('./dist/characters.json', JSON.stringify(characters));
 }
 
