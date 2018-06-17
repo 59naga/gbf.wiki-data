@@ -45,10 +45,10 @@ async function task(inputName, outputName) {
 async function main() {
   const fileNames = [];
 
-  fileNames.push(await task('2018-05-31', '2018-05-31'));
-  fileNames.push(await task('2018-05-30', '2018-05-30'));
-  // fileNames.push('./dist/2018-05-31.json');
-  // fileNames.push('./dist/2018-05-30.json');
+  // fileNames.push(await task('2018-05-31', '2018-05-31'));
+  // fileNames.push(await task('2018-05-30', '2018-05-30'));
+  fileNames.push('./dist/2018-05-31.json');
+  fileNames.push('./dist/2018-05-30.json');
 
   const characters = fileNames.reduce(
     ((data, filename) =>
