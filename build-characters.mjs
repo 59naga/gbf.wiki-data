@@ -59,13 +59,13 @@ async function main() {
   // sort by released desc, rarity desc, name asc
   characters.sort((a, b) => {
     if (a.released === b.released) {
-      if (a.t === b.t) {
+      if (a.rarity === b.rarity) {
         if (a.name === b.name) {
           return 0;
         }
         return a.name < b.name ? -1 : 1;
       }
-      return a.t < b.t ? 1 : -1;
+      return a.rarity < b.rarity ? 1 : -1;
     }
     return a.released < b.released ? 1 : -1;
   });
