@@ -52,6 +52,7 @@ export function parseDetail(html) {
 
   /* eslint-disable camelcase */
   const id = $extra.find('th:contains("ID")').eq(0).next().text();
+  const char_id = $extra.find('th:contains("Char ID")').eq(0).next().text();
   const rarity = $header.find('.char-rarity img').attr('alt').match(/Rarity (\w+).png/)[1];
   const title = $extra.find('th:contains("Title")').eq(0).next().text();
   const title_en = $header.find('.char-title').text().match(/([\w ]+)/)[1];
@@ -94,6 +95,7 @@ export function parseDetail(html) {
 
   return {
     id,
+    char_id,
     rarity,
     title,
     title_en,

@@ -47,6 +47,7 @@ describe('issues', () => {
 
     assert.deepEqual(data, {
       id: '3020030000',
+      char_id: '1026',
       rarity: 'R',
       title: 'オッドアングラー',
       title_en: 'Odd Angler',

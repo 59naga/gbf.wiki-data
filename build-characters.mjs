@@ -73,6 +73,7 @@ async function main() {
   // omit some fields for minified
   const charas = characters.map(chara => ({
     id: chara.id,
+    chara_id: chara.chara_id,
     name: chara.name,
     name_en: chara.name_en,
     name_wiki: chara.name_wiki,
