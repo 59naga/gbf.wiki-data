@@ -82,6 +82,7 @@ async function main() {
     element: char.element,
     specialty: char.specialty,
     race: char.race,
+    style: char.style,
     released: char.released,
   }));
 
