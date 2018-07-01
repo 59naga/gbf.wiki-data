@@ -50,6 +50,7 @@ async function main() {
   fileNames.push('./dist/2018-05-30.json');
   fileNames.push('./dist/2018-05-31.json');
   fileNames.push('./dist/2018-06-18.json');
+  fileNames.push('./dist/2018-06-30.json');
 
   const characters = fileNames.reduce(
     ((data, filename) =>
