@@ -42,30 +42,17 @@ describe('characters', () => {
 });
 
 describe('issues', () => {
-  it('#1', () => {
-    const data = parseDetail(fs.readFileSync(fixtures.yodarha).toString());
+  const data = JSON.parse(fs.readFileSync('./dist/chars.json').toString());
 
-    assert.deepEqual(data, {
-      id: '3020030000',
-      char_id: '1026',
-      rarity: 'R',
-      title: 'オッドアングラー',
-      title_en: 'Odd Angler',
-      name: 'ヨダルラーハ',
-      name_en: 'Yodarha',
-      element: 'Water',
-      style: 'Balanced',
-      race: 'Harvin',
-      gender: 'Male',
-      star: '3',
-      hp: '640',
-      atk: '4290',
-      em: 'Yes',
-      specialty: 'Sabre,Katana',
-      voice: '千葉繁',
-      voice_en: 'Shigeru Chiba',
-      released: '2015-01-22',
-      obtain: 'Premium Draw',
-    });
+  it('#1', () => {
+    const yoda = _find(data, item => item.name_wiki === 'Yodarha');
+    assert(yoda.specialty === 'Sabre,Katana');
+  });
+  it('#2', () => {
+    const ssrSoriz = _find(data, item => item.name_wiki === 'Soriz (SSR)');
+    assert(ssrSoriz.specialty === 'Melee');
+
+    const srLeona = _find(data, item => item.name_wiki === 'Leona');
+    assert(srLeona.specialty === 'Spear');
   });
 });
