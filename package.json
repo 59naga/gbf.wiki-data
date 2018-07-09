@@ -2,7 +2,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "abby 'mocha --require @std/esm test/*.mjs' --watch 'src/**/*.mjs,test/**/*.mjs'",
+    "start": "abby test --watch 'src/**/*.mjs,test/**/*.mjs'",
+    "test": "mocha --require @std/esm test/*.mjs",
     "build": "node --experimental-modules build-characters.mjs"
   },
   "dependencies": {
